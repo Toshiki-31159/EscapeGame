@@ -1,24 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gM3-zp-Dch">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="HpR-EI-gJ8">
+            <objects>
+                <viewController id="gM3-zp-Dch" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hs7-7V-fom">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="リビング" translatesAutoresizingMaskIntoConstraints="NO" id="uRX-Ja-uQY">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="脱出ゲーム" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="2xe-k7-KCz">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="51"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="50"/>
+                                <color key="textColor" systemColor="systemYellowColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" systemColor="systemOrangeColor"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <button autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFE-3X-zbw">
+                                <rect key="frame" x="387" y="264" width="122" height="48"/>
+                                <color key="backgroundColor" red="1" green="0.7670505031" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="tintColor" red="1" green="0.7670505031" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="はじめる">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="showDetail" id="der-Ds-lxy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dLz-hI-OhE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2xe-k7-KCz" secondAttribute="trailing" id="0fb-eG-QdB"/>
+                            <constraint firstItem="dLz-hI-OhE" firstAttribute="bottom" secondItem="QFE-3X-zbw" secondAttribute="bottom" constant="81" id="1ox-uJ-SMf"/>
+                            <constraint firstItem="2xe-k7-KCz" firstAttribute="top" secondItem="uRX-Ja-uQY" secondAttribute="top" id="9i4-cT-4Ud"/>
+                            <constraint firstItem="2xe-k7-KCz" firstAttribute="leading" secondItem="Hs7-7V-fom" secondAttribute="leading" id="KcG-GS-pk0"/>
+                            <constraint firstItem="2xe-k7-KCz" firstAttribute="centerX" secondItem="QFE-3X-zbw" secondAttribute="centerX" id="c2d-Fp-5Az"/>
+                            <constraint firstAttribute="bottom" secondItem="uRX-Ja-uQY" secondAttribute="bottom" id="fIs-dJ-z1e"/>
+                            <constraint firstItem="uRX-Ja-uQY" firstAttribute="top" secondItem="dLz-hI-OhE" secondAttribute="top" id="hkK-MK-qee"/>
+                            <constraint firstItem="2xe-k7-KCz" firstAttribute="leading" secondItem="uRX-Ja-uQY" secondAttribute="leading" id="pXs-Cu-vwy"/>
+                            <constraint firstItem="2xe-k7-KCz" firstAttribute="trailing" secondItem="uRX-Ja-uQY" secondAttribute="trailing" id="zKJ-8U-KEj"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YHv-hq-Fop" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-364" y="212"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="escape_game" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="リビング" translatesAutoresizingMaskIntoConstraints="NO" id="7lp-x8-AWN">
+                                <rect key="frame" x="-156" y="-90" width="1209" height="504"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1209" id="OD9-kd-XgY"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7lp-x8-AWN" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="topMargin" constant="-90" id="187-zw-rUd"/>
+                            <constraint firstAttribute="bottom" secondItem="7lp-x8-AWN" secondAttribute="bottom" id="3As-RL-daN"/>
+                            <constraint firstItem="7lp-x8-AWN" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="4Ke-6t-zhC"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="309.375" y="211.59420289855075"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="リビング" width="1600" height="872"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
