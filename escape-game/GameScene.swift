@@ -9,35 +9,72 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    var itemSquare = SKSpriteNode()
+    var key = SKSpriteNode()
+    var door = SKShapeNode()
     
-    override func didMove(to view: SKView) {
-    //リビングのサイズ、位置設定
+    
+//メイン画面の設定
+    func mainView() {
         let floor = SKSpriteNode(imageNamed: "リビング")
         floor.position = CGPoint(x: 0, y: 20)
         floor.zPosition = 0
         floor.size = CGSize(width: 770, height: 450)
         addChild(floor)
-    //鍵のサイズ、位置設定
-        let key = SKSpriteNode(imageNamed: "カギ")
-        key.position = CGPoint(x: 0, y: -70)
-        key.zPosition = 1
-        key.zRotation = 45
-        key.size = CGSize(width: 25, height: 50)
-        addChild(key)
-
+    }
+//アイテム枠の設定
+    func itemBar() {
+        self.itemSquare = SKSpriteNode(imageNamed: "アイテム枠")
+        self.itemSquare.position = CGPoint(x: -300, y: -120)
+        self.itemSquare.zPosition = 1
+        self.itemSquare.size = CGSize(width: 80, height: 80)
+        self.itemSquare.name = "itemBar"
+        }
+//カギアイテムの設定
+    func item() {
+        self.key = SKSpriteNode(imageNamed: "カギ")
+        self.key.position = CGPoint(x: 0, y: -70)
+        self.key.zPosition = 2
+        self.key.zRotation = 45
+        self.key.size = CGSize(width: 25, height: 50)
+        self.key.name = "key"
+    }
+//ドアのアクション範囲設定
+    func touchDoor() {
+        self.door = SKShapeNode(rect: CGRect(x: 288, y: -123,
+                                             width: 77, height: 280))
+        self.door.fillColor = UIColor.white
+        self.door.alpha = 0.5
+        self.door.zPosition = 1
+        self.door.name = "door"
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
+    override func didMove(to view: SKView) {
+    //各設定の呼び出し
+        self.mainView()
+        self.itemBar()
+        self.item()
+        self.touchDoor()
+    //鍵の表示
+        addChild(self.key)
+    //アイテム枠の表示
+        addChild(self.itemSquare)
+    //ドアのタッチ範囲の表示
+        addChild(door)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first as UITouch? {
+            let location = touch.location(in: self)
+            let touchNode = self.atPoint(location)
+            Swift.print(location)
+        //鍵の取得
+            if touchNode.name == "key" {
+                self.key.position = self.itemSquare.position
+            }
+        //ドアの画面に遷移
+            
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
