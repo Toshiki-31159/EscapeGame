@@ -16,6 +16,7 @@
 		0E3DB5E0256627BE00D7F714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E3DB5DF256627BE00D7F714 /* Assets.xcassets */; };
 		0E3DB5E9256629BB00D7F714 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E3DB5E8256629BB00D7F714 /* Launch Screen.storyboard */; };
 		0E3DB5F42567A9E900D7F714 /* door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DB5F32567A9E900D7F714 /* door.swift */; };
+		0E3DB5FC2567B02C00D7F714 /* door.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E3DB5FB2567B02C00D7F714 /* door.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0E3DB5E1256627BE00D7F714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E3DB5E8256629BB00D7F714 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0E3DB5F32567A9E900D7F714 /* door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = door.swift; sourceTree = "<group>"; };
+		0E3DB5FB2567B02C00D7F714 /* door.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = door.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,14 +64,15 @@
 		0E3DB5D1256627BE00D7F714 /* escape-game */ = {
 			isa = PBXGroup;
 			children = (
-				0E3DB5E8256629BB00D7F714 /* Launch Screen.storyboard */,
 				0E3DB5D2256627BE00D7F714 /* AppDelegate.swift */,
-				0E3DB5D4256627BE00D7F714 /* GameScene.sks */,
 				0E3DB5D6256627BE00D7F714 /* Actions.sks */,
 				0E3DB5D8256627BE00D7F714 /* GameScene.swift */,
+				0E3DB5D4256627BE00D7F714 /* GameScene.sks */,
 				0E3DB5F32567A9E900D7F714 /* door.swift */,
+				0E3DB5FB2567B02C00D7F714 /* door.sks */,
 				0E3DB5DA256627BE00D7F714 /* GameViewController.swift */,
 				0E3DB5DC256627BE00D7F714 /* Main.storyboard */,
+				0E3DB5E8256629BB00D7F714 /* Launch Screen.storyboard */,
 				0E3DB5DF256627BE00D7F714 /* Assets.xcassets */,
 				0E3DB5E1256627BE00D7F714 /* Info.plist */,
 			);
@@ -137,6 +140,7 @@
 				0E3DB5D5256627BE00D7F714 /* GameScene.sks in Resources */,
 				0E3DB5E0256627BE00D7F714 /* Assets.xcassets in Resources */,
 				0E3DB5E9256629BB00D7F714 /* Launch Screen.storyboard in Resources */,
+				0E3DB5FC2567B02C00D7F714 /* door.sks in Resources */,
 				0E3DB5D7256627BE00D7F714 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
