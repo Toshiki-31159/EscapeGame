@@ -44,7 +44,7 @@ class GameScene: SKScene {
         self.door = SKShapeNode(rect: CGRect(x: 288, y: -123,
                                              width: 77, height: 280))
         self.door.fillColor = UIColor.white
-        self.door.alpha = 0.5
+        self.door.alpha = 0.01
         self.door.zPosition = 1
         self.door.name = "door"
     }
@@ -64,18 +64,23 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first as UITouch? {
-            let location = touch.location(in: self)
-            let touchNode = self.atPoint(location)
+        if let touche = touches.first as UITouch? {
+            let location = touche.location(in: self)
+            let toucheNode = self.atPoint(location)
             Swift.print(location)
         //鍵の取得
-            if touchNode.name == "key" {
+            if toucheNode.name == "key" {
                 self.key.position = self.itemSquare.position
             }
         //ドアの画面に遷移
-            
+            if toucheNode.name == "door" {
+                let scene = Door(fileNamed: "door")
+                let transition = SKTransition.fade(withDuration: 0.5)
+                scene?.scaleMode = SKSceneScaleMode.aspectFill
+                self.view!.presentScene(scene!, transition: transition)
+                }
+            }
         }
-    }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
