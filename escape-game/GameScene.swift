@@ -9,11 +9,13 @@ import SpriteKit
 import GameplayKit
 let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
+var itemBar1 = appDelegate.itemBar1
+var itemBar2 = appDelegate.itemBar2
+let itemSquares = appDelegate.itemSquares
+var key = appDelegate.key
+var flag = appDelegate.flag
+
 class GameScene: SKScene {
-    var itemBar1 = SKSpriteNode()
-    var itemBar2 = SKSpriteNode()
-    let itemSquares = ["アイテム枠", "アイテム枠選択"]
-    var key = SKSpriteNode()
     var door = SKShapeNode()
     
 //メイン画面の設定
@@ -26,12 +28,12 @@ class GameScene: SKScene {
     }
 //カギアイテムの設定
     func keyItem() {
-        self.key = SKSpriteNode(imageNamed: "カギ")
-        self.key.position = CGPoint(x: 0, y: -70)
-        self.key.zPosition = 3
-        self.key.zRotation = 45
-        self.key.size = CGSize(width: 25, height: 50)
-        self.key.name = "key"
+        key = SKSpriteNode(imageNamed: "カギ")
+        key.position = CGPoint(x: 0, y: -70)
+        key.zPosition = 3
+        key.zRotation = 45
+        key.size = CGSize(width: 25, height: 50)
+        key.name = "key"
     }
 //ドアのアクション範囲設定
     func touchDoor() {
@@ -48,8 +50,6 @@ class GameScene: SKScene {
         self.mainView()
         self.keyItem()
         self.touchDoor()
-    //鍵の表示
-        addChild(self.key)
     //ドアのタッチ範囲の表示
         addChild(self.door)
     //アイテム欄の設定
@@ -57,19 +57,24 @@ class GameScene: SKScene {
         itemBar.size = CGSize(width: 80, height: 80)
         itemBar.position = CGPoint(x: -300, y: -120)
     //アイテム欄の表示
-        self.itemBar1 = SKSpriteNode(imageNamed: self.itemSquares[0])
-        self.itemBar1.size = itemBar.size
-        self.itemBar1.position = itemBar.position
-        self.itemBar1.zPosition = 1
-        self.itemBar1.name = "itemBar1"
-        addChild(self.itemBar1)
+        itemBar1 = SKSpriteNode(imageNamed: itemSquares[0])
+        itemBar1.size = itemBar.size
+        itemBar1.position = itemBar.position
+        itemBar1.zPosition = 1
+        itemBar1.name = "itemBar1"
+        addChild(itemBar1)
         
-        self.itemBar2 = SKSpriteNode(imageNamed: self.itemSquares[1])
-        self.itemBar2.size = itemBar.size
-        self.itemBar2.position = itemBar.position
-        self.itemBar2.zPosition = 0
-        self.itemBar2.name = "itemBar2"
-        addChild(self.itemBar2)
+        itemBar2 = SKSpriteNode(imageNamed: itemSquares[1])
+        itemBar2.size = itemBar.size
+        itemBar2.position = itemBar.position
+        itemBar2.zPosition = 0
+        itemBar2.name = "itemBar2"
+        addChild(itemBar2)
+    //鍵の表示
+        if flag == 1 {
+            key.position = itemBar1.position
+        }
+        addChild(key)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -78,18 +83,19 @@ class GameScene: SKScene {
             let toucheNode = self.atPoint(location)
             Swift.print(location)
         //アイテム選択
-            if self.key.position == self.itemBar1.position &&
+            if key.position == itemBar1.position &&
             toucheNode.name == "itemBar1" ||
             toucheNode.name == "itemBar2" ||
             toucheNode.name == "key" {
-                self.itemBar2.zPosition = 2
+                itemBar2.zPosition = 2
             }
             else {
-                self.itemBar2.zPosition = 0
+                itemBar2.zPosition = 0
             }
         //鍵の取得
             if toucheNode.name == "key" {
-                self.key.position = self.itemBar1.position
+                key.position = itemBar1.position
+                flag = 1
             }
         //ドアの画面に遷移
             if toucheNode.name == "door" {

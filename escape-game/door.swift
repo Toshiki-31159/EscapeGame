@@ -34,7 +34,7 @@ class Door: SKScene {
             let toucheNode = self.atPoint(location)
             
         //ゲームクリア画面への遷移
-            if toucheNode.name == "door" {
+            if toucheNode.name == "door" && flag == 1 {
                 let scene = Clear(fileNamed: "clearView")
                 let transition = SKTransition.fade(withDuration: 2.0)
                 scene?.scaleMode = SKSceneScaleMode.aspectFill

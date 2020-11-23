@@ -12,7 +12,11 @@ import SpriteKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 //アイテム欄の設定
-    //var itemSquare = SKSpriteNode(imageNamed: "アイテム枠")
+    var itemBar1 = SKSpriteNode()
+    var itemBar2 = SKSpriteNode()
+    var itemSquares = ["アイテム枠", "アイテム枠選択"]
+    var key = SKSpriteNode()
+    var flag = 0
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
