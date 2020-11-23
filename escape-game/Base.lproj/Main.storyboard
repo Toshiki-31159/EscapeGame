@@ -67,21 +67,8 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="リビング" translatesAutoresizingMaskIntoConstraints="NO" id="7lp-x8-AWN">
-                                <rect key="frame" x="-156" y="-90" width="1209" height="504"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="1209" id="OD9-kd-XgY"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="7lp-x8-AWN" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="topMargin" constant="-90" id="187-zw-rUd"/>
-                            <constraint firstAttribute="bottom" secondItem="7lp-x8-AWN" secondAttribute="bottom" id="3As-RL-daN"/>
-                            <constraint firstItem="7lp-x8-AWN" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="4Ke-6t-zhC"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
