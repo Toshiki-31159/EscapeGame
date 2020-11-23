@@ -79,7 +79,9 @@ class GameScene: SKScene {
             Swift.print(location)
         //アイテム選択
             if self.key.position == self.itemBar1.position &&
-            toucheNode.name == "itemBar1" || toucheNode.name == "key" {
+            toucheNode.name == "itemBar1" ||
+            toucheNode.name == "itemBar2" ||
+            toucheNode.name == "key" {
                 self.itemBar2.zPosition = 2
             }
             else {
@@ -89,7 +91,6 @@ class GameScene: SKScene {
             if toucheNode.name == "key" {
                 self.key.position = self.itemBar1.position
             }
-            
         //ドアの画面に遷移
             if toucheNode.name == "door" {
                 let scene = Door(fileNamed: "door")
@@ -108,7 +109,6 @@ class GameScene: SKScene {
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
