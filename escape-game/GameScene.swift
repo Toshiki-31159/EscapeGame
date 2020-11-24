@@ -21,6 +21,9 @@ class GameScene: SKScene {
     var touchsofa = SKShapeNode()
     var sofa = SKSpriteNode()
     var backButton = SKSpriteNode()
+    var password1 = SKSpriteNode()
+    var password2 = SKSpriteNode()
+    var password3 = SKSpriteNode()
     
 //メイン画面の設定
     func mainView() {
@@ -63,7 +66,7 @@ class GameScene: SKScene {
         key.size = CGSize(width: 25, height: 50)
         key.name = "key"
     }
-    //バックボタンの表示
+//バックボタンの表示
     func BuckButton() {
         self.backButton = SKSpriteNode(imageNamed: "青矢印バック")
         self.backButton.zPosition = -1
@@ -105,6 +108,28 @@ class GameScene: SKScene {
         itemBar2.zPosition = 0
         itemBar2.name = "itemBar2"
         self.addChild(itemBar2)
+    //暗号の設定
+        let password = SKSpriteNode()
+        password.size = CGSize(width: 50, height: 50)
+        password.zPosition = -1
+    //暗号の表示
+        self.password1 = SKSpriteNode(imageNamed: "サイコロ6")
+        self.password1.size = password.size
+        self.password1.position = CGPoint(x: -110, y: 0)
+        self.password1.zPosition = password.zPosition
+        addChild(self.password1)
+        
+        self.password2 = SKSpriteNode(imageNamed: "サイコロ3")
+        self.password2.size = password.size
+        self.password2.position = CGPoint(x: 0, y: 0)
+        self.password2.zPosition = password.zPosition
+        addChild(self.password2)
+        
+        self.password3 = SKSpriteNode(imageNamed: "サイコロ5")
+        self.password3.size = password.size
+        self.password3.position = CGPoint(x: 110, y: 0)
+        self.password3.zPosition = password.zPosition
+        addChild(self.password3)
     //鍵の表示
         if flag1 == 1 {
             key.position = itemBar1.position
@@ -145,10 +170,16 @@ class GameScene: SKScene {
             if toucheNode.name == "touchsofa" {
                 self.sofa.zPosition = 4
                 self.backButton.zPosition = 4
+                self.password1.zPosition = 5
+                self.password2.zPosition = 5
+                self.password3.zPosition = 5
             }
             else if toucheNode.name == "backButton" {
                 self.sofa.zPosition = -1
                 self.backButton.zPosition = -1
+                self.password1.zPosition = -1
+                self.password2.zPosition = -1
+                self.password3.zPosition = -1
             }
         }
     }
