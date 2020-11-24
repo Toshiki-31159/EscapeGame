@@ -20,11 +20,8 @@ var memo = appDelegate.memo
 var key1 = appDelegate.key1
 var key2 = appDelegate.key2
 //フラグ
-var memoFlag = appDelegate.memoFlag
 var keyFlag1 = appDelegate.keyFlag1
 var keyFlag2 = appDelegate.keyFlag2
-var itemBarFlag1 = appDelegate.itemBarFlag1
-var itemBarFlag2 = appDelegate.itemBarFlag2
 
 class GameScene: SKScene {
     var floor = SKSpriteNode()

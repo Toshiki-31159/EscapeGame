@@ -23,11 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var key1 = SKSpriteNode()
     var key2 = SKSpriteNode()
 //フラグ
-    var memoFlag = 0
     var keyFlag1 = 0
     var keyFlag2 = 0
-    var itemBarFlag1 = 0
-    var itemBarFlag2 = 0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
