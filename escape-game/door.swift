@@ -14,10 +14,10 @@ class Door: SKScene {
     
     override func didMove(to view: SKView) {
     //アイテム欄とアイテムの表示
-        addChild(itemBar1_2)
         addChild(itemBar1_1)
-        if flag1 == 1 {
-        }
+        addChild(itemBar1_2)
+        addChild(itemBar2_1)
+        addChild(itemBar2_2)
     //ドアの表示
         let door = SKSpriteNode(imageNamed: "ドア")
         door.zPosition = 0
@@ -48,7 +48,7 @@ class Door: SKScene {
                 itemBar1_2.zPosition = 0
             }
         //ゲームクリア画面への遷移
-            if toucheNode.name == "door" && flag1 == 1 && itemBar1_2.zPosition == 2{
+            if toucheNode.name == "door" && itemBar1_2.zPosition == 2{
                 let scene = Clear(fileNamed: "clearView")
                 let transition = SKTransition.fade(withDuration: 2.0)
                 scene?.scaleMode = SKSceneScaleMode.aspectFill

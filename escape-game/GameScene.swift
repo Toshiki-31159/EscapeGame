@@ -8,11 +8,23 @@
 import SpriteKit
 import GameplayKit
 let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-
+//アイテム欄
+let itemBar = appDelegate.itemBar
 var itemBar1_1 = appDelegate.itemBar1_1
 var itemBar1_2 = appDelegate.itemBar1_2
-let itemSquares = appDelegate.itemSquares
-var flag1 = appDelegate.flag1
+var itemBar2_1 = appDelegate.itemBar2_1
+var itemBar2_2 = appDelegate.itemBar2_2
+//カギとメモ
+let items = appDelegate.items
+var memo = appDelegate.memo
+var key1 = appDelegate.key1
+var key2 = appDelegate.key2
+//フラグ
+var memoFlag = appDelegate.memoFlag
+var keyFlag1 = appDelegate.keyFlag1
+var keyFlag2 = appDelegate.keyFlag2
+var itemBarFlag1 = appDelegate.itemBarFlag1
+var itemBarFlag2 = appDelegate.itemBarFlag2
 
 class GameScene: SKScene {
     var floor = SKSpriteNode()
@@ -27,7 +39,18 @@ class GameScene: SKScene {
     var password3 = SKSpriteNode()
     var treasure1 = SKSpriteNode()
     var treasure2 = SKSpriteNode()
-    
+    var TVFlag1 = 0
+    var TVFlag2 = 0
+    var treasureFlag = 0
+    var powerButton = SKShapeNode()
+    var Button1 = SKShapeNode()
+    var Button2 = SKShapeNode()
+    var Button3 = SKShapeNode()
+    var Button4 = SKShapeNode()
+    var Button5 = SKShapeNode()
+    var Button6 = SKShapeNode()
+    var Button7 = SKShapeNode()
+
 //メイン画面の設定
     func mainView() {
         self.floor = SKSpriteNode(imageNamed: "リビング")
@@ -115,6 +138,82 @@ class GameScene: SKScene {
         self.treasure2.zPosition = self.treasure1.zPosition
         self.treasure2.name = "treasure2"
     }
+//アイテム欄の設定
+    func Bar() {
+        itemBar1_1 = SKSpriteNode(imageNamed: itemBar[0])
+        itemBar1_1.size = CGSize(width: 80, height: 80)
+        itemBar1_1.position = CGPoint(x: -300, y: -120)
+        itemBar1_1.zPosition = 1
+        itemBar1_1.name = "itemBar1_1"
+        
+        itemBar1_2 = SKSpriteNode(imageNamed: itemBar[1])
+        itemBar1_2.size = itemBar1_1.size
+        itemBar1_2.position = itemBar1_1.position
+        itemBar1_2.zPosition = 0
+        itemBar1_2.name = "itemBar1_2"
+        
+        itemBar2_1 = SKSpriteNode(imageNamed: itemBar[0])
+        itemBar2_1.size = itemBar1_1.size
+        itemBar2_1.position = CGPoint(x: -300, y: -40)
+        itemBar2_1.zPosition = itemBar1_1.zPosition
+        itemBar2_1.name = "itemBar2_1"
+        
+        itemBar2_2 = SKSpriteNode(imageNamed: itemBar[1])
+        itemBar2_2.size = itemBar1_1.size
+        itemBar2_2.position = itemBar2_1.position
+        itemBar2_2.zPosition = itemBar1_2.zPosition
+        itemBar2_2.name = "itemBar2_2"
+    }
+//リモコンボタンのアクション範囲設定
+    func button () {
+        self.powerButton = SKShapeNode(rect: CGRect(x: 33, y: -44,
+                                                    width: 45, height: 28))
+        self.powerButton.fillColor = UIColor.white
+        self.powerButton.alpha = 0.5
+        self.powerButton.zPosition = -1
+        
+        self.Button1 = SKShapeNode(rect: CGRect(x: -77, y: -100,
+                                               width: 45, height: 28))
+        self.Button1.fillColor = self.powerButton.fillColor
+        self.Button1.alpha = self.powerButton.alpha
+        self.Button1.zPosition = self.powerButton.zPosition
+        
+        self.Button2 = SKShapeNode(rect: CGRect(x: -22, y: -100,
+                                                width: 45, height: 28))
+        self.Button2.fillColor = self.powerButton.fillColor
+        self.Button2.alpha = self.powerButton.alpha
+        self.Button2.zPosition = self.powerButton.zPosition
+        
+        self.Button3 = SKShapeNode(rect: CGRect(x: 33, y: -100,
+                                                width: 45, height: 28))
+        self.Button3.fillColor = self.powerButton.fillColor
+        self.Button3.alpha = self.powerButton.alpha
+        self.Button3.zPosition = self.powerButton.zPosition
+        
+        self.Button4 = SKShapeNode(rect: CGRect(x: -77, y: -130,
+                                                width: 45, height: 28))
+        self.Button4.fillColor = self.powerButton.fillColor
+        self.Button4.alpha = self.powerButton.alpha
+        self.Button4.zPosition = self.powerButton.zPosition
+        
+        self.Button5 = SKShapeNode(rect: CGRect(x: -22, y: -130,
+                                                width: 45, height: 28))
+        self.Button5.fillColor = self.powerButton.fillColor
+        self.Button5.alpha = self.powerButton.alpha
+        self.Button5.zPosition = self.powerButton.zPosition
+        
+        self.Button6 = SKShapeNode(rect: CGRect(x: 33, y: -130,
+                                                width: 45, height: 28))
+        self.Button6.fillColor = self.powerButton.fillColor
+        self.Button6.alpha = self.powerButton.alpha
+        self.Button6.zPosition = self.powerButton.zPosition
+        
+        self.Button7 = SKShapeNode(rect: CGRect(x: -77, y: -160,
+                                                width: 155, height: 28))
+        self.Button7.fillColor = self.powerButton.fillColor
+        self.Button7.alpha = self.powerButton.alpha
+        self.Button7.zPosition = self.powerButton.zPosition
+    }
     
     override func didMove(to view: SKView) {
     //各設定の呼び出し
@@ -126,6 +225,8 @@ class GameScene: SKScene {
         self.controllerItem()
         self.password()
         self.treasure()
+        self.Bar()
+        self.button()
     //各タッチ範囲、オブジェクトの表示
         addChild(self.floor)
         addChild(self.backButton)
@@ -133,31 +234,25 @@ class GameScene: SKScene {
         addChild(self.touchsofa1)
         addChild(self.touchsofa2)
         addChild(self.sofa)
-        addChild(controller)
+        addChild(self.controller)
         addChild(self.password1)
         addChild(self.password2)
         addChild(self.password3)
         addChild(self.treasure1)
         addChild(self.treasure2)
-    
-    //アイテム欄の設定
-        let itemBar = SKSpriteNode()
-        itemBar.size = CGSize(width: 80, height: 80)
-        itemBar.position = CGPoint(x: -300, y: -120)
-    //アイテム欄の表示
-        itemBar1_1 = SKSpriteNode(imageNamed: itemSquares[0])
-        itemBar1_1.size = itemBar.size
-        itemBar1_1.position = itemBar.position
-        itemBar1_1.zPosition = 1
-        itemBar1_1.name = "itemBar1_1"
-        self.addChild(itemBar1_1)
-        
-        itemBar1_2 = SKSpriteNode(imageNamed: itemSquares[1])
-        itemBar1_2.size = itemBar.size
-        itemBar1_2.position = itemBar.position
-        itemBar1_2.zPosition = 0
-        itemBar1_2.name = "itemBar1_2"
-        self.addChild(itemBar1_2)
+        addChild(itemBar1_1)
+        addChild(itemBar1_2)
+        addChild(itemBar2_1)
+        addChild(itemBar2_2)
+        addChild(powerButton)
+        addChild(Button1)
+        addChild(Button2)
+        addChild(Button3)
+        addChild(Button4)
+        addChild(Button5)
+        addChild(Button6)
+        addChild(Button7)
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -177,10 +272,18 @@ class GameScene: SKScene {
             }
         //リモコンの選択
             if toucheNode.name == "controller" {
-                self.controller.position = CGPoint(x: 0, y: -135)
+                self.controller.position = CGPoint(x: 0, y: -250)
                 self.controller.zRotation = 0
-                self.controller.size = CGSize(width: 160, height: 400)
-                self.backButton.zPosition = 3
+                self.controller.size = CGSize(width: 200, height: 500)
+                self.powerButton.zPosition = 4
+                self.Button1.zPosition = 4
+                self.Button2.zPosition = 4
+                self.Button3.zPosition = 4
+                self.Button4.zPosition = 4
+                self.Button5.zPosition = 4
+                self.Button6.zPosition = 4
+                self.Button7.zPosition = 4
+                self.backButton.zPosition = 4
             }
         //左ソファと暗号の表示
             if toucheNode.name == "touchsofa1" &&
@@ -212,6 +315,14 @@ class GameScene: SKScene {
                 self.treasure1.zPosition = -1
                 self.treasure2.zPosition = -1
                 self.backButton.zPosition = -1
+                self.powerButton.zPosition = -1
+                self.Button1.zPosition = -1
+                self.Button2.zPosition = -1
+                self.Button3.zPosition = -1
+                self.Button4.zPosition = -1
+                self.Button5.zPosition = -1
+                self.Button6.zPosition = -1
+                self.Button7.zPosition = -1
             }
         }
     }
