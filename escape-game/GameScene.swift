@@ -22,6 +22,7 @@ var key2 = appDelegate.key2
 //フラグ
 var keyFlag1 = appDelegate.keyFlag1
 var keyFlag2 = appDelegate.keyFlag2
+var treasureFlag = appDelegate.treasureFlag
 
 class GameScene: SKScene {
     var floor = SKSpriteNode()
@@ -39,7 +40,6 @@ class GameScene: SKScene {
     var monitorFlag = 0
     var TVFlag1 = 0
     var TVFlag2 = 0
-    var treasureFlag = 0
     var powerButton = SKShapeNode()
     var Button1 = SKShapeNode()
     var Button2 = SKShapeNode()
@@ -48,6 +48,7 @@ class GameScene: SKScene {
     var Button5 = SKShapeNode()
     var Button6 = SKShapeNode()
     var Button7 = SKShapeNode()
+    var hint = SKLabelNode()
 
 //メイン画面の設定
     func mainView() {
@@ -160,7 +161,6 @@ class GameScene: SKScene {
         itemBar2_2.size = itemBar1_1.size
         itemBar2_2.position = itemBar2_1.position
         itemBar2_2.zPosition = itemBar1_2.zPosition
-        itemBar2_2.name = "itemBar2_2"
     }
 //リモコンボタンのアクション範囲設定
     func button () {
@@ -229,6 +229,18 @@ class GameScene: SKScene {
         key2.position = CGPoint(x: 0, y: 50)
         key2.zPosition = -1
         key2.name = "key2"
+        
+        memo = SKSpriteNode(imageNamed: items[0])
+        memo.size = CGSize(width: 150, height: 200)
+        memo.position = CGPoint(x: 0, y: 50)
+        memo.zPosition = -1
+        memo.name = "name"
+        hint = SKLabelNode(fontNamed: "Chalkduster")
+        hint.text = "出口は賽の裏"
+        hint.fontSize = 20
+        hint.fontColor = SKColor.black
+        hint.position = CGPoint(x: 0, y: 40)
+        hint.zPosition = -1
     }
     
     override func didMove(to view: SKView) {
@@ -243,8 +255,21 @@ class GameScene: SKScene {
         self.treasure()
         self.Bar()
         self.button()
-        if keyFlag1 == 0 && keyFlag2 == 0 {
-            self.item()
+        self.item()
+    //カギ入手時
+        if keyFlag1 == 3 {
+            key1.position = itemBar2_1.position
+            key1.zPosition = 3
+            key1.zRotation = 1
+            key1.size = CGSize(width: 30, height: 50)
+        }
+        if keyFlag2 == 3 {
+            key2.position = itemBar1_1.position
+            if treasureFlag != 1{
+                key2.zPosition = 3
+            }
+            key2.zRotation = 1
+            key2.size = CGSize(width: 30, height: 50)
         }
     //各タッチ範囲、オブジェクトの表示
         addChild(self.floor)
@@ -272,7 +297,8 @@ class GameScene: SKScene {
         addChild(self.Button6)
         addChild(key1)
         addChild(key2)
-
+        addChild(memo)
+        addChild(hint)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -368,6 +394,34 @@ class GameScene: SKScene {
                 self.sofa.zPosition = 4
                 self.treasure1.zPosition = 5
             }
+        //アイテムの選択
+            if keyFlag1 == 3 && toucheNode.name == "key1" ||
+            toucheNode.name == "itemBar2_1" {
+                itemBar2_2.zPosition = 2
+            }
+            else {
+                itemBar2_2.zPosition = 0
+            }
+            if keyFlag2 == 3 && toucheNode.name == "key2" ||
+            toucheNode.name == "itemBar1_1" {
+                itemBar1_2.zPosition = 2
+            }
+            else if keyFlag2 != 3 || toucheNode.name != "treasure1" {
+                itemBar1_2.zPosition = 0
+            }
+        //宝箱解除
+            if toucheNode.name == "treasure1" &&
+            itemBar1_2.zPosition == 2 && keyFlag2 == 3 ||
+            toucheNode.name == "treasure1" && treasureFlag == 1{
+                self.treasure2.zPosition = 5
+                self.treasure1.zPosition = -1
+                treasureFlag = 1
+                key2.zPosition = 0
+            }
+            if toucheNode.name == "treasure2" {
+                memo.zPosition = 6
+                hint.zPosition = 7
+            }
         //バックボタンの処理
             if toucheNode.name == "backButton" {
                 self.controller.position = CGPoint(x: 40, y: -80)
@@ -394,6 +448,8 @@ class GameScene: SKScene {
                 if keyFlag2 != 3 {
                     keyFlag2 = 0
                 }
+                memo.zPosition = -1
+                hint.zPosition = -1
             }
         }
     }

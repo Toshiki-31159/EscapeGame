@@ -18,6 +18,8 @@ class Door: SKScene {
         addChild(itemBar1_2)
         addChild(itemBar2_1)
         addChild(itemBar2_2)
+        addChild(key1)
+        addChild(key2)
     //ドアの表示
         let door = SKSpriteNode(imageNamed: "ドア")
         door.zPosition = 0
@@ -38,17 +40,23 @@ class Door: SKScene {
             let location = touche.location(in: self)
             let toucheNode = self.atPoint(location)
             
-        //アイテム選択
-            if toucheNode.name == "itemBar1_1" ||
-            toucheNode.name == "itemBar1_2" ||
-            toucheNode.name == "controller" {
+        //アイテムの選択
+            if keyFlag1 == 3 && toucheNode.name == "key1" ||
+            toucheNode.name == "itemBar2_1" {
+                itemBar2_2.zPosition = 2
+            }
+            else if keyFlag1 != 3 || toucheNode.name != "door" {
+                itemBar2_2.zPosition = 0
+            }
+            if keyFlag2 == 3 && toucheNode.name == "key2" ||
+            toucheNode.name == "itemBar1_1" {
                 itemBar1_2.zPosition = 2
             }
-            else if toucheNode.name != "door" {
+            else {
                 itemBar1_2.zPosition = 0
             }
         //ゲームクリア画面への遷移
-            if toucheNode.name == "door" && itemBar1_2.zPosition == 2{
+            if toucheNode.name == "door" && itemBar2_2.zPosition == 2 && keyFlag1 == 3 {
                 let scene = Clear(fileNamed: "clearView")
                 let transition = SKTransition.fade(withDuration: 2.0)
                 scene?.scaleMode = SKSceneScaleMode.aspectFill
