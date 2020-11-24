@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var itemBar2_1 = SKSpriteNode()
     var itemBar2_2 = SKSpriteNode()
 //カギとメモ
-    let items = ["メモ","カギ1","カギ2"]
+    let items = ["かみ","カギ","金のカギ"]
     var memo = SKSpriteNode()
     var key1 = SKSpriteNode()
     var key2 = SKSpriteNode()

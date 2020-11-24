@@ -39,6 +39,7 @@ class GameScene: SKScene {
     var password3 = SKSpriteNode()
     var treasure1 = SKSpriteNode()
     var treasure2 = SKSpriteNode()
+    var monitorFlag = 0
     var TVFlag1 = 0
     var TVFlag2 = 0
     var treasureFlag = 0
@@ -169,50 +170,68 @@ class GameScene: SKScene {
         self.powerButton = SKShapeNode(rect: CGRect(x: 33, y: -44,
                                                     width: 45, height: 28))
         self.powerButton.fillColor = UIColor.white
-        self.powerButton.alpha = 0.5
+        self.powerButton.alpha = 0.01
         self.powerButton.zPosition = -1
+        self.powerButton.name = "powerButton"
         
         self.Button1 = SKShapeNode(rect: CGRect(x: -77, y: -100,
                                                width: 45, height: 28))
         self.Button1.fillColor = self.powerButton.fillColor
         self.Button1.alpha = self.powerButton.alpha
         self.Button1.zPosition = self.powerButton.zPosition
+        self.Button1.name = "Button1"
         
         self.Button2 = SKShapeNode(rect: CGRect(x: -22, y: -100,
                                                 width: 45, height: 28))
         self.Button2.fillColor = self.powerButton.fillColor
         self.Button2.alpha = self.powerButton.alpha
         self.Button2.zPosition = self.powerButton.zPosition
-        
+        self.Button2.name = "Button2"
+
         self.Button3 = SKShapeNode(rect: CGRect(x: 33, y: -100,
                                                 width: 45, height: 28))
         self.Button3.fillColor = self.powerButton.fillColor
         self.Button3.alpha = self.powerButton.alpha
         self.Button3.zPosition = self.powerButton.zPosition
-        
+        self.Button3.name = "Button3"
+
         self.Button4 = SKShapeNode(rect: CGRect(x: -77, y: -130,
                                                 width: 45, height: 28))
         self.Button4.fillColor = self.powerButton.fillColor
         self.Button4.alpha = self.powerButton.alpha
         self.Button4.zPosition = self.powerButton.zPosition
-        
+        self.Button4.name = "Button4"
+
         self.Button5 = SKShapeNode(rect: CGRect(x: -22, y: -130,
                                                 width: 45, height: 28))
         self.Button5.fillColor = self.powerButton.fillColor
         self.Button5.alpha = self.powerButton.alpha
         self.Button5.zPosition = self.powerButton.zPosition
-        
+        self.Button5.name = "Button5"
+
         self.Button6 = SKShapeNode(rect: CGRect(x: 33, y: -130,
                                                 width: 45, height: 28))
         self.Button6.fillColor = self.powerButton.fillColor
         self.Button6.alpha = self.powerButton.alpha
         self.Button6.zPosition = self.powerButton.zPosition
+        self.Button6.name = "Button6"
         
         self.Button7 = SKShapeNode(rect: CGRect(x: -77, y: -160,
                                                 width: 155, height: 28))
-        self.Button7.fillColor = self.powerButton.fillColor
-        self.Button7.alpha = self.powerButton.alpha
-        self.Button7.zPosition = self.powerButton.zPosition
+    }
+//アイテムの設定
+    func item() {
+        key1 = SKSpriteNode(imageNamed: items[1])
+        key1.size = CGSize(width: 50, height: 80)
+        key1.position = CGPoint(x: 0, y: 50)
+        key1.zPosition = -1
+        key1.name = "key1"
+        
+        key2 = SKSpriteNode(imageNamed: items[2])
+        key2.size = CGSize(width: 50, height: 80)
+        key2.position = CGPoint(x: 0, y: 50)
+        key2.zPosition = -1
+        key2.name = "key2"
     }
     
     override func didMove(to view: SKView) {
@@ -227,6 +246,9 @@ class GameScene: SKScene {
         self.treasure()
         self.Bar()
         self.button()
+        if keyFlag1 == 0 && keyFlag2 == 0 {
+            self.item()
+        }
     //各タッチ範囲、オブジェクトの表示
         addChild(self.floor)
         addChild(self.backButton)
@@ -244,14 +266,15 @@ class GameScene: SKScene {
         addChild(itemBar1_2)
         addChild(itemBar2_1)
         addChild(itemBar2_2)
-        addChild(powerButton)
-        addChild(Button1)
-        addChild(Button2)
-        addChild(Button3)
-        addChild(Button4)
-        addChild(Button5)
-        addChild(Button6)
-        addChild(Button7)
+        addChild(self.powerButton)
+        addChild(self.Button1)
+        addChild(self.Button2)
+        addChild(self.Button3)
+        addChild(self.Button4)
+        addChild(self.Button5)
+        addChild(self.Button6)
+        addChild(key1)
+        addChild(key2)
 
     }
     
@@ -284,6 +307,51 @@ class GameScene: SKScene {
                 self.Button6.zPosition = 4
                 self.Button7.zPosition = 4
                 self.backButton.zPosition = 4
+            }
+        //リモコン電源ボタンの処理
+            if toucheNode.name == "powerButton" {
+                let monitor = SKShapeNode(rect: CGRect(x: -78, y: 5,
+                                                       width: 158, height: 99))
+                monitor.fillColor = UIColor.white
+                monitor.zPosition = 1
+                addChild(monitor)
+                monitorFlag = 1
+            }
+        //カギ1の出現処理
+            if monitorFlag == 1 && toucheNode.name == "Button1" && keyFlag1 == 0{
+                keyFlag1 = 1
+            }
+            if keyFlag1 == 1 && toucheNode.name == "Button4" {
+                keyFlag1 = 2
+            }
+            if keyFlag1 == 2 && toucheNode.name == "Button2" && key2.zPosition != 2 {
+                key1.zPosition = 2
+            }
+        //カギ2の出現処理
+            if monitorFlag == 1 && toucheNode.name == "Button6" && keyFlag2 == 0{
+                keyFlag2 = 1
+            }
+            if keyFlag2 == 1 && toucheNode.name == "Button3" {
+                keyFlag2 = 2
+            }
+            if keyFlag2 == 2 && toucheNode.name == "Button5" && key1.zPosition != 2 {
+                key2.zPosition = 2
+            }
+        //カギ1の取得
+            if toucheNode.name == "key1" {
+                key1.position = itemBar2_1.position
+                key1.zPosition = 3
+                key1.zRotation = 1
+                key1.size = CGSize(width: 30, height: 50)
+                keyFlag1 = 3
+            }
+        //カギ2の取得
+            if toucheNode.name == "key2" {
+                key2.position = itemBar1_1.position
+                key2.zPosition = 3
+                key2.zRotation = 1
+                key2.size = CGSize(width: 30, height: 50)
+                keyFlag2 = 3
             }
         //左ソファと暗号の表示
             if toucheNode.name == "touchsofa1" &&
@@ -323,6 +391,12 @@ class GameScene: SKScene {
                 self.Button5.zPosition = -1
                 self.Button6.zPosition = -1
                 self.Button7.zPosition = -1
+                if keyFlag1 != 3 {
+                    keyFlag1 = 0
+                }
+                if keyFlag2 != 3 {
+                    keyFlag2 = 0
+                }
             }
         }
     }
