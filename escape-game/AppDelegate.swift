@@ -12,11 +12,11 @@ import SpriteKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 //アイテム欄の設定
-    var itemBar1 = SKSpriteNode()
-    var itemBar2 = SKSpriteNode()
+    var itemBar1_1 = SKSpriteNode()
+    var itemBar1_2 = SKSpriteNode()
     var itemSquares = ["アイテム枠", "アイテム枠選択"]
 //鍵とフラグの設定
-    var key = SKSpriteNode()
+    var controller = SKSpriteNode()
     var flag1 = 0
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

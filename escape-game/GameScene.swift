@@ -9,10 +9,10 @@ import SpriteKit
 import GameplayKit
 let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
-var itemBar1 = appDelegate.itemBar1
-var itemBar2 = appDelegate.itemBar2
+var itemBar1_1 = appDelegate.itemBar1_1
+var itemBar1_2 = appDelegate.itemBar1_2
 let itemSquares = appDelegate.itemSquares
-var key = appDelegate.key
+var controller = appDelegate.controller
 var flag1 = appDelegate.flag1
 
 class GameScene: SKScene {
@@ -57,14 +57,14 @@ class GameScene: SKScene {
         self.sofa.zPosition = -1
         self.sofa.size = CGSize(width: 400, height: 200)
     }
-//鍵のサイズ、位置設定
-    func keyItem() {
-        key = SKSpriteNode(imageNamed: "カギ")
-        key.position = CGPoint(x: 0, y: -70)
-        key.zPosition = 3
-        key.zRotation = 45
-        key.size = CGSize(width: 25, height: 50)
-        key.name = "key"
+//リモコンのサイズ、位置設定
+    func controllerItem() {
+        controller = SKSpriteNode(imageNamed: "リモコン")
+        controller.position = CGPoint(x: 40, y: -80)
+        controller.zPosition = 3
+        controller.zRotation = 0.25
+        controller.size = CGSize(width: 20, height: 50)
+        controller.name = "controller"
     }
 //バックボタンの表示
     func BuckButton() {
@@ -80,7 +80,7 @@ class GameScene: SKScene {
         self.mainView()
         self.touchDoor()
         self.touchesSofa()
-        self.keyItem()
+        self.controllerItem()
         self.displaySofa()
         self.BuckButton()
     //各タッチ範囲、リビングの表示
@@ -95,19 +95,19 @@ class GameScene: SKScene {
         itemBar.size = CGSize(width: 80, height: 80)
         itemBar.position = CGPoint(x: -300, y: -120)
     //アイテム欄の表示
-        itemBar1 = SKSpriteNode(imageNamed: itemSquares[0])
-        itemBar1.size = itemBar.size
-        itemBar1.position = itemBar.position
-        itemBar1.zPosition = 1
-        itemBar1.name = "itemBar1"
-        self.addChild(itemBar1)
+        itemBar1_1 = SKSpriteNode(imageNamed: itemSquares[0])
+        itemBar1_1.size = itemBar.size
+        itemBar1_1.position = itemBar.position
+        itemBar1_1.zPosition = 1
+        itemBar1_1.name = "itemBar1_1"
+        self.addChild(itemBar1_1)
         
-        itemBar2 = SKSpriteNode(imageNamed: itemSquares[1])
-        itemBar2.size = itemBar.size
-        itemBar2.position = itemBar.position
-        itemBar2.zPosition = 0
-        itemBar2.name = "itemBar2"
-        self.addChild(itemBar2)
+        itemBar1_2 = SKSpriteNode(imageNamed: itemSquares[1])
+        itemBar1_2.size = itemBar.size
+        itemBar1_2.position = itemBar.position
+        itemBar1_2.zPosition = 0
+        itemBar1_2.name = "itemBar1_2"
+        self.addChild(itemBar1_2)
     //暗号の設定
         let password = SKSpriteNode()
         password.size = CGSize(width: 50, height: 50)
@@ -130,11 +130,11 @@ class GameScene: SKScene {
         self.password3.position = CGPoint(x: 110, y: 0)
         self.password3.zPosition = password.zPosition
         addChild(self.password3)
-    //鍵の表示
+    //リモコンの表示
         if flag1 == 1 {
-            key.position = itemBar1.position
+            controller.position = itemBar1_1.position
         }
-        self.addChild(key)
+        self.addChild(controller)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -143,18 +143,19 @@ class GameScene: SKScene {
             let toucheNode = self.atPoint(location)
             Swift.print(location)
         //アイテム選択
-            if key.position == itemBar1.position &&
-            toucheNode.name == "itemBar1" ||
-            toucheNode.name == "itemBar2" ||
-            toucheNode.name == "key" {
-                itemBar2.zPosition = 2
+            if controller.position == itemBar1_1.position &&
+            toucheNode.name == "itemBar1_1" ||
+            toucheNode.name == "itemBar1_2" ||
+            toucheNode.name == "controller" {
+                itemBar1_2.zPosition = 2
             }
             else {
-                itemBar2.zPosition = 0
+                itemBar1_2.zPosition = 0
             }
-        //鍵の取得
-            if toucheNode.name == "key" {
-                key.position = itemBar1.position
+        //リモコンの取得
+            if toucheNode.name == "controller" {
+                controller.position = itemBar1_1.position
+                controller.zRotation = 0
                 flag1 = 1
             }
         //ドアの画面に遷移
