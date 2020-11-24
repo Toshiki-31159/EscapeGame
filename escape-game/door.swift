@@ -17,7 +17,6 @@ class Door: SKScene {
         addChild(itemBar1_2)
         addChild(itemBar1_1)
         if flag1 == 1 {
-            addChild(controller)
         }
     //ドアの表示
         let door = SKSpriteNode(imageNamed: "ドア")
@@ -40,8 +39,7 @@ class Door: SKScene {
             let toucheNode = self.atPoint(location)
             
         //アイテム選択
-            if controller.position == itemBar1_1.position &&
-            toucheNode.name == "itemBar1_1" ||
+            if toucheNode.name == "itemBar1_1" ||
             toucheNode.name == "itemBar1_2" ||
             toucheNode.name == "controller" {
                 itemBar1_2.zPosition = 2

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var itemBar1_1 = SKSpriteNode()
     var itemBar1_2 = SKSpriteNode()
     var itemSquares = ["アイテム枠", "アイテム枠選択"]
-//鍵とフラグの設定
+//リモコンとフラグの設定
     var controller = SKSpriteNode()
     var flag1 = 0
     
