@@ -31,15 +31,13 @@ class GameScene: SKScene {
     var touchsofa1 = SKShapeNode()
     var touchsofa2 = SKShapeNode()
     var sofa = SKSpriteNode()
-    var controller = SKSpriteNode()
     var password1 = SKSpriteNode()
     var password2 = SKSpriteNode()
     var password3 = SKSpriteNode()
     var treasure1 = SKSpriteNode()
     var treasure2 = SKSpriteNode()
-    var monitorFlag = 0
-    var TVFlag1 = 0
-    var TVFlag2 = 0
+    var hint = SKLabelNode()
+    var controller = SKSpriteNode()
     var powerButton = SKShapeNode()
     var Button1 = SKShapeNode()
     var Button2 = SKShapeNode()
@@ -47,35 +45,29 @@ class GameScene: SKScene {
     var Button4 = SKShapeNode()
     var Button5 = SKShapeNode()
     var Button6 = SKShapeNode()
-    var Button7 = SKShapeNode()
-    var hint = SKLabelNode()
+    var monitorFlag = 0
 
-//メイン画面の設定
-    func mainView() {
+//設定
+    func config() {
+        //リビングの設定
         self.floor = SKSpriteNode(imageNamed: "リビング")
         self.floor.position = CGPoint(x: 0, y: 20)
         self.floor.zPosition = 0
         self.floor.size = CGSize(width: 770, height: 450)
-    }
-//バックボタンの設定
-    func BuckButton() {
+        //バックボタンの設定
         self.backButton = SKSpriteNode(imageNamed: "青矢印バック")
         self.backButton.zPosition = -1
         self.backButton.size = CGSize(width: 50, height: 50)
         self.backButton.position = CGPoint(x: 300, y: -130)
         self.backButton.name = "backButton"
-    }
-//ドアのアクション範囲設定
-    func touchDoor() {
+        //ドアのアクション範囲設定
         self.door = SKShapeNode(rect: CGRect(x: 288, y: -123,
                                              width: 77, height: 280))
         self.door.fillColor = UIColor.white
         self.door.alpha = 0.01
         self.door.zPosition = 1
         self.door.name = "door"
-    }
-//ソファのアクション範囲設定
-    func touchesSofa() {
+        //ソファのアクション範囲設定
         self.touchsofa1 = SKShapeNode(rect: CGRect(x: -220, y: -167,
                                              width: 100, height: 120))
         self.touchsofa1.fillColor = UIColor.white
@@ -89,25 +81,12 @@ class GameScene: SKScene {
         self.touchsofa2.alpha = self.touchsofa1.alpha
         self.touchsofa2.zPosition = self.touchsofa1.zPosition
         self.touchsofa2.name = "touchsofa2"
-    }
-//ソファの設定
-    func displaySofa() {
+        //ソファの設定
         self.sofa = SKSpriteNode(imageNamed: "ソファ")
         self.sofa.position = CGPoint(x: 0, y: -50)
         self.sofa.zPosition = -1
         self.sofa.size = CGSize(width: 400, height: 200)
-    }
-//リモコン設定
-    func controllerItem() {
-        controller = SKSpriteNode(imageNamed: "リモコン")
-        controller.position = CGPoint(x: 40, y: -80)
-        controller.zPosition = 3
-        controller.zRotation = 0.25
-        controller.size = CGSize(width: 20, height: 50)
-        controller.name = "controller"
-    }
-//暗号の設定
-    func password() {
+        //暗号の設定
         self.password1 = SKSpriteNode(imageNamed: "サイコロ6")
         self.password1.size = CGSize(width: 50, height: 50)
         self.password1.position = CGPoint(x: -110, y: 0)
@@ -122,9 +101,7 @@ class GameScene: SKScene {
         self.password3.size = password1.size
         self.password3.position = CGPoint(x: 110, y: 0)
         self.password3.zPosition = password1.zPosition
-    }
-//宝箱の設定
-    func treasure() {
+        //宝箱の設定
         self.treasure1 = SKSpriteNode(imageNamed: "宝箱")
         self.treasure1.size = CGSize(width: 80, height: 80)
         self.treasure1.position = CGPoint(x: 0, y: -20)
@@ -136,34 +113,14 @@ class GameScene: SKScene {
         self.treasure2.position = self.treasure1.position
         self.treasure2.zPosition = self.treasure1.zPosition
         self.treasure2.name = "treasure2"
-    }
-//アイテム欄の設定
-    func Bar() {
-        itemBar1_1 = SKSpriteNode(imageNamed: itemBar[0])
-        itemBar1_1.size = CGSize(width: 80, height: 80)
-        itemBar1_1.position = CGPoint(x: -300, y: -120)
-        itemBar1_1.zPosition = 1
-        itemBar1_1.name = "itemBar1_1"
-        
-        itemBar1_2 = SKSpriteNode(imageNamed: itemBar[1])
-        itemBar1_2.size = itemBar1_1.size
-        itemBar1_2.position = itemBar1_1.position
-        itemBar1_2.zPosition = 0
-        itemBar1_2.name = "itemBar1_2"
-        
-        itemBar2_1 = SKSpriteNode(imageNamed: itemBar[0])
-        itemBar2_1.size = itemBar1_1.size
-        itemBar2_1.position = CGPoint(x: -300, y: -40)
-        itemBar2_1.zPosition = itemBar1_1.zPosition
-        itemBar2_1.name = "itemBar2_1"
-        
-        itemBar2_2 = SKSpriteNode(imageNamed: itemBar[1])
-        itemBar2_2.size = itemBar1_1.size
-        itemBar2_2.position = itemBar2_1.position
-        itemBar2_2.zPosition = itemBar1_2.zPosition
-    }
-//リモコンボタンのアクション範囲設定
-    func button () {
+        //リモコン設定
+        self.controller = SKSpriteNode(imageNamed: "リモコン")
+        self.controller.position = CGPoint(x: 40, y: -80)
+        self.controller.zPosition = 3
+        self.controller.zRotation = 0.25
+        self.controller.size = CGSize(width: 20, height: 50)
+        self.controller.name = "controller"
+        //リモコンボタンのアクション範囲設定
         self.powerButton = SKShapeNode(rect: CGRect(x: 33, y: -44,
                                                     width: 45, height: 28))
         self.powerButton.fillColor = UIColor.white
@@ -212,12 +169,30 @@ class GameScene: SKScene {
         self.Button6.alpha = self.powerButton.alpha
         self.Button6.zPosition = self.powerButton.zPosition
         self.Button6.name = "Button6"
+        //アイテム欄の設定
+        itemBar1_1 = SKSpriteNode(imageNamed: itemBar[0])
+        itemBar1_1.size = CGSize(width: 80, height: 80)
+        itemBar1_1.position = CGPoint(x: -300, y: -120)
+        itemBar1_1.zPosition = 1
+        itemBar1_1.name = "itemBar1_1"
         
-        self.Button7 = SKShapeNode(rect: CGRect(x: -77, y: -160,
-                                                width: 155, height: 28))
-    }
-//アイテムの設定
-    func item() {
+        itemBar1_2 = SKSpriteNode(imageNamed: itemBar[1])
+        itemBar1_2.size = itemBar1_1.size
+        itemBar1_2.position = itemBar1_1.position
+        itemBar1_2.zPosition = 0
+        itemBar1_2.name = "itemBar1_2"
+        
+        itemBar2_1 = SKSpriteNode(imageNamed: itemBar[0])
+        itemBar2_1.size = itemBar1_1.size
+        itemBar2_1.position = CGPoint(x: -300, y: -40)
+        itemBar2_1.zPosition = itemBar1_1.zPosition
+        itemBar2_1.name = "itemBar2_1"
+        
+        itemBar2_2 = SKSpriteNode(imageNamed: itemBar[1])
+        itemBar2_2.size = itemBar1_1.size
+        itemBar2_2.position = itemBar2_1.position
+        itemBar2_2.zPosition = itemBar1_2.zPosition
+        //アイテムの設定
         key1 = SKSpriteNode(imageNamed: items[1])
         key1.size = CGSize(width: 50, height: 80)
         key1.position = CGPoint(x: 0, y: 50)
@@ -234,7 +209,6 @@ class GameScene: SKScene {
         memo.size = CGSize(width: 150, height: 200)
         memo.position = CGPoint(x: 0, y: 50)
         memo.zPosition = -1
-        memo.name = "name"
         hint = SKLabelNode(fontNamed: "Chalkduster")
         hint.text = "出口は賽の裏"
         hint.fontSize = 20
@@ -244,18 +218,8 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-    //各設定の呼び出し
-        self.mainView()
-        self.BuckButton()
-        self.touchDoor()
-        self.touchesSofa()
-        self.displaySofa()
-        self.controllerItem()
-        self.password()
-        self.treasure()
-        self.Bar()
-        self.button()
-        self.item()
+    //設定の呼び出し
+        self.config()
     //カギ入手時
         if keyFlag1 == 3 {
             key1.position = itemBar2_1.position
@@ -271,23 +235,19 @@ class GameScene: SKScene {
             key2.zRotation = 1
             key2.size = CGSize(width: 30, height: 50)
         }
-    //各タッチ範囲、オブジェクトの表示
+    //オブジェクトの表示
         addChild(self.floor)
         addChild(self.backButton)
         addChild(self.door)
         addChild(self.touchsofa1)
         addChild(self.touchsofa2)
         addChild(self.sofa)
-        addChild(self.controller)
         addChild(self.password1)
         addChild(self.password2)
         addChild(self.password3)
         addChild(self.treasure1)
         addChild(self.treasure2)
-        addChild(itemBar1_1)
-        addChild(itemBar1_2)
-        addChild(itemBar2_1)
-        addChild(itemBar2_2)
+        addChild(self.controller)
         addChild(self.powerButton)
         addChild(self.Button1)
         addChild(self.Button2)
@@ -295,6 +255,10 @@ class GameScene: SKScene {
         addChild(self.Button4)
         addChild(self.Button5)
         addChild(self.Button6)
+        addChild(itemBar1_1)
+        addChild(itemBar1_2)
+        addChild(itemBar2_1)
+        addChild(itemBar2_2)
         addChild(key1)
         addChild(key2)
         addChild(memo)
@@ -316,6 +280,37 @@ class GameScene: SKScene {
                 scene?.scaleMode = SKSceneScaleMode.aspectFill
                 self.view!.presentScene(scene!, transition: transition)
             }
+        //左ソファと暗号の表示
+            if toucheNode.name == "touchsofa1" &&
+            self.controller.zRotation == 0.25 &&
+            self.sofa.zPosition == -1 {
+                self.backButton.zPosition = 3
+                self.sofa.zPosition = 4
+                self.password1.zPosition = 5
+                self.password2.zPosition = 5
+                self.password3.zPosition = 5
+            }
+        //右ソファと宝箱の表示
+            if toucheNode.name == "touchsofa2" &&
+            self.controller.zRotation == 0.25 &&
+            self.sofa.zPosition == -1 {
+                self.backButton.zPosition = 3
+                self.sofa.zPosition = 4
+                self.treasure1.zPosition = 5
+            }
+        //宝箱解除
+            if toucheNode.name == "treasure1" &&
+            itemBar1_2.zPosition == 2 && keyFlag2 == 3 ||
+            toucheNode.name == "treasure1" && treasureFlag == 1{
+                self.treasure2.zPosition = 5
+                self.treasure1.zPosition = -1
+                treasureFlag = 1
+                key2.zPosition = 0
+            }
+            if toucheNode.name == "treasure2" {
+                memo.zPosition = 6
+                hint.zPosition = 7
+            }
         //リモコンの選択
             if toucheNode.name == "controller" {
                 self.controller.position = CGPoint(x: 0, y: -250)
@@ -328,7 +323,6 @@ class GameScene: SKScene {
                 self.Button4.zPosition = 4
                 self.Button5.zPosition = 4
                 self.Button6.zPosition = 4
-                self.Button7.zPosition = 4
                 self.backButton.zPosition = 4
             }
         //リモコン電源ボタンの処理
@@ -376,24 +370,6 @@ class GameScene: SKScene {
                 key2.size = CGSize(width: 30, height: 50)
                 keyFlag2 = 3
             }
-        //左ソファと暗号の表示
-            if toucheNode.name == "touchsofa1" &&
-            self.controller.zRotation == 0.25 &&
-            self.sofa.zPosition == -1 {
-                self.backButton.zPosition = 3
-                self.sofa.zPosition = 4
-                self.password1.zPosition = 5
-                self.password2.zPosition = 5
-                self.password3.zPosition = 5
-            }
-        //右ソファと宝箱の表示
-            if toucheNode.name == "touchsofa2" &&
-            self.controller.zRotation == 0.25 &&
-            self.sofa.zPosition == -1 {
-                self.backButton.zPosition = 3
-                self.sofa.zPosition = 4
-                self.treasure1.zPosition = 5
-            }
         //アイテムの選択
             if keyFlag1 == 3 && toucheNode.name == "key1" ||
             toucheNode.name == "itemBar2_1" {
@@ -409,31 +385,18 @@ class GameScene: SKScene {
             else if keyFlag2 != 3 || toucheNode.name != "treasure1" {
                 itemBar1_2.zPosition = 0
             }
-        //宝箱解除
-            if toucheNode.name == "treasure1" &&
-            itemBar1_2.zPosition == 2 && keyFlag2 == 3 ||
-            toucheNode.name == "treasure1" && treasureFlag == 1{
-                self.treasure2.zPosition = 5
-                self.treasure1.zPosition = -1
-                treasureFlag = 1
-                key2.zPosition = 0
-            }
-            if toucheNode.name == "treasure2" {
-                memo.zPosition = 6
-                hint.zPosition = 7
-            }
         //バックボタンの処理
             if toucheNode.name == "backButton" {
-                self.controller.position = CGPoint(x: 40, y: -80)
-                self.controller.zRotation = 0.25
-                self.controller.size = CGSize(width: 20, height: 50)
+                self.backButton.zPosition = -1
                 self.sofa.zPosition = -1
                 self.password1.zPosition = -1
                 self.password2.zPosition = -1
                 self.password3.zPosition = -1
                 self.treasure1.zPosition = -1
                 self.treasure2.zPosition = -1
-                self.backButton.zPosition = -1
+                self.controller.position = CGPoint(x: 40, y: -80)
+                self.controller.zRotation = 0.25
+                self.controller.size = CGSize(width: 20, height: 50)
                 self.powerButton.zPosition = -1
                 self.Button1.zPosition = -1
                 self.Button2.zPosition = -1
@@ -441,7 +404,6 @@ class GameScene: SKScene {
                 self.Button4.zPosition = -1
                 self.Button5.zPosition = -1
                 self.Button6.zPosition = -1
-                self.Button7.zPosition = -1
                 if keyFlag1 != 3 {
                     keyFlag1 = 0
                 }

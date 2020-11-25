@@ -18,8 +18,12 @@ class Door: SKScene {
         addChild(itemBar1_2)
         addChild(itemBar2_1)
         addChild(itemBar2_2)
-        addChild(key1)
-        addChild(key2)
+        if keyFlag1 == 3 {
+            addChild(key1)
+        }
+        if keyFlag2 == 3 {
+            addChild(key2)
+        }
     //ドアの表示
         let door = SKSpriteNode(imageNamed: "ドア")
         door.zPosition = 0
