@@ -37,7 +37,7 @@
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="showDetail" id="der-Ds-lxy"/>
+                                    <segue destination="BV1-FR-VrT" kind="showDetail" id="Xu5-E0-jRX"/>
                                 </connections>
                             </button>
                         </subviews>
