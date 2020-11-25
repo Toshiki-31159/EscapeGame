@@ -341,8 +341,14 @@ class GameScene: SKScene {
             if keyFlag1 == 1 && toucheNode.name == "Button4" {
                 keyFlag1 = 2
             }
+            else if keyFlag1 == 1 && toucheNode.name != "Button1" {
+                keyFlag1 = 0
+            }
             if keyFlag1 == 2 && toucheNode.name == "Button2" && key2.zPosition != 2 {
                 key1.zPosition = 2
+            }
+            else if keyFlag1 == 2 && toucheNode.name != "Button4" {
+                keyFlag1 = 0
             }
         //カギ2の出現処理
             if monitorFlag == 1 && toucheNode.name == "Button6" && keyFlag2 == 0{
@@ -351,8 +357,14 @@ class GameScene: SKScene {
             if keyFlag2 == 1 && toucheNode.name == "Button3" {
                 keyFlag2 = 2
             }
+            else if keyFlag2 == 1 && toucheNode.name != "Button6" {
+                keyFlag2 = 0
+            }
             if keyFlag2 == 2 && toucheNode.name == "Button5" && key1.zPosition != 2 {
                 key2.zPosition = 2
+            }
+            else if keyFlag2 == 2 && toucheNode.name != "Button3" {
+                keyFlag2 = 0
             }
         //カギ1の取得
             if toucheNode.name == "key1" {
