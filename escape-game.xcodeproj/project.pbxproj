@@ -13,12 +13,12 @@
 		0E3DB5D9256627BE00D7F714 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DB5D8256627BE00D7F714 /* GameScene.swift */; };
 		0E3DB5DB256627BE00D7F714 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DB5DA256627BE00D7F714 /* GameViewController.swift */; };
 		0E3DB5DE256627BE00D7F714 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E3DB5DC256627BE00D7F714 /* Main.storyboard */; };
-		0E3DB5E0256627BE00D7F714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E3DB5DF256627BE00D7F714 /* Assets.xcassets */; };
 		0E3DB5E9256629BB00D7F714 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E3DB5E8256629BB00D7F714 /* Launch Screen.storyboard */; };
 		0E3DB5F42567A9E900D7F714 /* door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DB5F32567A9E900D7F714 /* door.swift */; };
 		0E3DB5FC2567B02C00D7F714 /* door.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E3DB5FB2567B02C00D7F714 /* door.sks */; };
 		0E3DB6002567D1F600D7F714 /* clearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DB5FF2567D1F600D7F714 /* clearView.swift */; };
 		0E3DB6032567D21C00D7F714 /* clearView.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E3DB6022567D21C00D7F714 /* clearView.sks */; };
+		0E3DB60A256CB51E00D7F714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E3DB609256CB51E00D7F714 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,13 +29,13 @@
 		0E3DB5D8256627BE00D7F714 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		0E3DB5DA256627BE00D7F714 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		0E3DB5DD256627BE00D7F714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0E3DB5DF256627BE00D7F714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E3DB5E1256627BE00D7F714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E3DB5E8256629BB00D7F714 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0E3DB5F32567A9E900D7F714 /* door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = door.swift; sourceTree = "<group>"; };
 		0E3DB5FB2567B02C00D7F714 /* door.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = door.sks; sourceTree = "<group>"; };
 		0E3DB5FF2567D1F600D7F714 /* clearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clearView.swift; sourceTree = "<group>"; };
 		0E3DB6022567D21C00D7F714 /* clearView.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = clearView.sks; sourceTree = "<group>"; };
+		0E3DB609256CB51E00D7F714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 				0E3DB5D6256627BE00D7F714 /* Actions.sks */,
 				0E3DB5DC256627BE00D7F714 /* Main.storyboard */,
 				0E3DB5E8256629BB00D7F714 /* Launch Screen.storyboard */,
-				0E3DB5DF256627BE00D7F714 /* Assets.xcassets */,
+				0E3DB609256CB51E00D7F714 /* Assets.xcassets */,
 				0E3DB5E1256627BE00D7F714 /* Info.plist */,
 			);
 			path = "escape-game";
@@ -144,9 +144,9 @@
 			files = (
 				0E3DB5DE256627BE00D7F714 /* Main.storyboard in Resources */,
 				0E3DB5D5256627BE00D7F714 /* GameScene.sks in Resources */,
-				0E3DB5E0256627BE00D7F714 /* Assets.xcassets in Resources */,
 				0E3DB6032567D21C00D7F714 /* clearView.sks in Resources */,
 				0E3DB5E9256629BB00D7F714 /* Launch Screen.storyboard in Resources */,
+				0E3DB60A256CB51E00D7F714 /* Assets.xcassets in Resources */,
 				0E3DB5FC2567B02C00D7F714 /* door.sks in Resources */,
 				0E3DB5D7256627BE00D7F714 /* Actions.sks in Resources */,
 			);

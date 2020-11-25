@@ -11,14 +11,22 @@ import SpriteKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-//アイテム欄の設定
-    var itemBar1 = SKSpriteNode()
-    var itemBar2 = SKSpriteNode()
-    var itemSquares = ["アイテム枠", "アイテム枠選択"]
-//鍵とフラグの設定
-    var key = SKSpriteNode()
-    var flag1 = 0
-    
+//アイテム欄
+    let itemBar = ["アイテム枠", "アイテム枠選択"]
+    var itemBar1_1 = SKSpriteNode()
+    var itemBar1_2 = SKSpriteNode()
+    var itemBar2_1 = SKSpriteNode()
+    var itemBar2_2 = SKSpriteNode()
+//カギとメモ
+    let items = ["かみ","カギ","金のカギ"]
+    var memo = SKSpriteNode()
+    var key1 = SKSpriteNode()
+    var key2 = SKSpriteNode()
+//フラグ
+    var keyFlag1 = 0
+    var keyFlag2 = 0
+    var treasureFlag = 0
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         sleep(1)
